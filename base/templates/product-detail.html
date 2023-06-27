@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Məhsullar' %} {% endblock %}
+{% block content %}
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Content Side-->
+
+            <!--Our Shop-->
+            <section class="shop-page">
+                <div class="product-details">
+
+                    <!--Basic Details-->
+                    <div class="basic-details">
+                        <div class="row">
+
+                            <div class="image-column col-lg-5 col-md-12 col-xs-12 wow fadeInLeft">
+                                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                                    class="swiper mySwiper2">
+                                    <div class="swiper-wrapper">
+                                        {% for image in product.images.all %}
+                                        
+                                        <div class="swiper-slide">
+                                            <img src="{{image.image.url}}" />
+                                        </div>
+                                        
+                                        {% endfor %}
+                                        
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
+                                <div thumbsSlider="" class="swiper mySwiper">
+                                    <div class="swiper-wrapper">
+                                        {% for image in product.images.all %}
+                                        <div class="swiper-slide">
+                                            <img src="{{image.image.url}}" />
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!--Info Column-->
+                            <div class="info-column col-lg-6 col-md-6 col-xs-12 wow fadeInRight">
+                                <div class="details-header">
+                                    <h4>{{product.name}}</h4>
+                                    <div class="item-price">${{product.price}}</div>
+
+                                </div>
+                                <div class="text">
+                                    <p>{{product.description|safe}}</p>
+                                </div>
+                                <div class="product_meta">
+                                  
+                                    <span class="sku_wrapper">Kod: <span class="sku">{{product.code}}</span></span>
+                                    <span class="posted_in">Kateqoriya: <span class="category-name">{{product.category}}</sapn> </span>
+                                </div>
+                                <div class="post-share-options clearfix d-flex">
+                                    <div class="pull-right social-icon-one clearfix">
+                                        <div class="share">Sosial linklər</div>
+                                        <ul class="clearfix shop-details-links">
+                                            {% for social_media in social_medias %}
+                                        {% if social_media.app == 'insta' %}
+                                        <a href="" target="_blank"><span
+                                                class="fa fa-instagram"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'fb' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                                class="fa fa-facebook-f"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'tiktok' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                                class="fa fa-tiktok"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'twitter' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                            class="fa fa-twitter"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'linkedin' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                            class="fa fa-linkedin"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'wp' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                            class="fa fa-whatsapp"></span></a>
+                                        {% endif %}
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="other-options">
+                                    <div class="btns-box">
+                                        <button type="button"
+                                            class="theme-btn btn-style-one add-to-cart request-btn"
+                                            fdprocessedid="152v3i">MÜRACİƏT</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!--Related Products-->
+                    <div class="related-products">
+                        <h2>Oxşar Məhsullar</h2>
+                        <div class="auto-container">
+                            <div class="row clearfix">
+                                <!--Our Shop-->
+
+                                <!--Shop Item-->
+                                {% for similar in similar_products %}
+                                
+                                
+                                <div class="shop-item col-md-3 col-md-6 col-xs-12 wow fadeInUp">
+                                    <div class="inner-box">
+                                        <div class="image">
+                                            {% for image in similar.images.all %}
+                                            {% if forloop.counter == 1 %}
+                                            <a href="{{ similar.get_absolute_url }}">
+                                                <img src="{{image.image.url}}" alt="">
+                                            </a>
+                                            {% endif %}
+                                            {% endfor %}
+                                        
+                                        </div>
+                                        <div class="lower-content">
+                                            <h3><a href="{% url 'product_detail' similar.slug %}">{{similar.name}}</a></h3>
+                                            <div class="clearfix">
+                                                <div class="pull-left">
+                                                    <ul class="price">
+                                                
+                                                        {% if similar.is_discounted %}
+                                                    <li class="total-price">${{similar.price}}</li>
+                                                    <li>${{similar.new_price}}</li>
+                                                    {% else %}
+                                                    <li>${{similar.price}}</li>
+                                                    {% endif %}
+                                                        
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {% endfor %}
+                                <!--Shop Item-->
+                                
+
+                                <!--Shop Item-->
+                                
+
+                                
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup">
+                        <div class="modal">
+                            <span class="close-modal">
+                                <i class="fa fa-close"></i>
+                            </span>
+                            <div class="row">
+                                <div class="defoult-form contact-3 pt-3 pl-3 pr-3 pb-3 light-form">
+                                    <div class="section-title">
+                                        <h4 class="">Müraciət edin</h4>
+                                    </div>
+                                    <div id="formmessage" style="display:none">Success/Error Message Goes Here
+                                    </div>
+                                    <div class="contact-form">
+                                        <form method="post" action="{% url 'product_detail' product.slug %}" id="contact-form"
+                                            novalidate="novalidate">
+                                            {% csrf_token %}
+                                            <div class="row clearfix">
+                                                <!--Form Group-->
+                                                <div class="form-group col-lg-12 col-md-12  col-xs-12">
+                                                    <input type="text" name="firstname" value=""
+                                                        placeholder="Ad Soyad*" required=""
+                                                        fdprocessedid="shqlod">
+                                                </div>
+                                                <!--Form Group-->
+                                                <div class="form-group col-lg-12 col-md-12  col-xs-12">
+                                                    <input type="email" name="email" value=""
+                                                        placeholder="E-poçt*" required="" fdprocessedid="h217d">
+                                                </div>
+                                                <!--Form Group-->
+                                                <div class="form-group  col-lg-12 col-md-12">
+                                                    <div class="input-group">
+                                                        <span class="countrycode">+994</span>
+                                                        <input type="text" class="form-input"
+                                                            placeholder="(_ _) _ _ _-_ _-_ _" id="phone"
+                                                            name="phone">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                                    <button type="submit" class="theme-btn btn-style-one"
+                                                        fdprocessedid="oioo9q">Göndər</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

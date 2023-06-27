@@ -1,0 +1,166 @@
+/*Theme Color File*/
+
+a,
+.theme_color,
+.main-header .header-top .top-left ul>li>a .fa-solid,
+.main-header .header-top .top-left ul>li>a:hover,
+.main-header .header-top .top-right .social-links a:hover,
+.header-upper .main-menu .navigation>li:hover>a,
+.header-upper .main-menu .navigation>li.current>a,
+.header-upper .main-menu .navigation>li.current-menu-item>a,
+.main-slider .tp-caption .btn-style-two:hover,
+.service-item .inner-box h3 a:hover,
+.portfolio-tabs .portfolio-tab-btns .p-tab-btn.active-btn,
+.default-portfolio-item .overlay-box .over-content .subtitle,
+.default-portfolio-item .overlay-box .over-content h4 a:hover,
+.default-portfolio-item .overlay-box .over-content .link-box a:hover,
+.call-to-action .text-column h2 a,
+.news-style-one .lower-content a:hover,
+.news-style-one .lower-content .link-box a:hover,
+.main-footer .links-widget .list li a:hover,
+.main-footer .footer-bottom .copyright a,
+.service-box .inner-box .title-box .icon,
+.service-box .inner-box:hover .title-box h3 a,
+.page-title .bread-crumb li a:hover,
+.page-title .bread-crumb li a.current,
+.accordion-box .block .acc-btn.active .icon-outer,
+.faq-form-section .submit-btn:hover,
+.pricing-column .inner-box:hover .price .total-amount,
+.pricing-column .inner-box:hover .price-header .price sub,
+.pricing-column .inner-box:hover .price-header .dollar-sign,
+.pricing-column .lower-content .buy-btn,
+.error-search-box .form-group input:focus+button,
+.error-search-box .form-group button:hover,
+.projects-section .filters .filter.active,
+.projects-section .filters .filter:hover,
+.related-projects .owl-nav .owl-prev:hover,
+.related-projects .owl-nav .owl-next:hover,
+.shop-item .inner-box .lower-content a:hover,
+.shop-item .inner-box .lower-content .price li,
+.styled-pagination li a:hover,
+.styled-pagination li a.active,
+.sidebar .related-posts .post a:hover,
+.blog-cat li a:hover,
+.product-details .basic-details .details-header .item-price,
+.product-details .basic-details .wishlist:hover,
+.product-details .basic-details .wishlist:hover .icon,
+.prod-tabs .reviews-container .rev-header .rating,
+.sidebar .popular-posts .post a:hover,
+.social-icon-one a:hover,
+.contact-section .contact-info-block .inner .icon-box,
+.contact-section .social-links li a:hover,
+.faq-search-box .form-group input:focus+button,
+.faq-search-box .form-group button:hover {
+    color: #39b54a;
+}
+
+.dropdown-list {
+    width: 60px !important;
+}
+
+/*BackGround Color*/
+
+.main-header .header-top .login-link,
+.main-header .nav-outer .more-options .cart-btn a .count,
+.main-menu .navigation>li>ul>li:hover>a,
+.main-menu .navigation>li>ul>li>ul>li>a:hover,
+.sticky-header .main-menu .navigation>li:hover>a,
+.sticky-header .main-menu .navigation>li.current>a,
+.sticky-header .main-menu .navigation>li.current-menu-item>a,
+.btn-style-one,
+.btn-style-three:hover,
+.scroll-to-top:hover,
+.testimonials-section .owl-dots .owl-dot.active span,
+.news-style-one .inner-box .date-box,
+.subscribe-style-one,
+.main-footer .social-links li a:hover,
+.get-quote-section.style-two .form-column .form-box .form-header,
+.list-style-one li:before,
+.team-member .social-links li a:hover,
+.accordion-box .block .icon-outer .icon-minus,
+.pricing-column .inner-box:hover .lower-content .buy-btn,
+.styled-pagination li a.next:hover,
+.sidebar .popular-tags a:hover,
+.rangeslider-widget .noUi-connect,
+.sidebar .search-box .form-group input:focus+button,
+.sidebar .search-box .form-group button:hover,
+.prod-tabs .tab-btns .tab-btn:before,
+.comment-form button {
+    background-color: #39b54a;
+}
+
+/*Border Color*/
+
+.main-menu .navigation>li>ul,
+.main-menu .navigation>li>ul>li>ul,
+.main-header .nav-outer .dropdown-outer .dropdown-menu,
+.main-header .search-panel input:focus,
+.main-header .search-panel select:focus,
+.btn-style-one,
+.main-slider .tp-caption .btn-style-two:hover,
+.sec-title .separator:before,
+.sec-title .separator:after,
+.btn-style-three:hover,
+.testimonials-section .owl-dots .owl-dot.active span,
+.default-form input:focus,
+.default-form select:focus,
+.default-form textarea:focus,
+.main-footer .social-links li a:hover,
+.team-member .social-links li a:hover,
+.accordion-box .block .acc-btn.active .icon-outer,
+.faq-form-section .form-group input[type="text"]:focus,
+.faq-form-section .form-group input[type="email"]:focus,
+.faq-form-section .form-group textarea:focus,
+.faq-form-section .submit-btn:hover,
+.pricing-column .inner-box:hover .lower-content .buy-btn,
+.pricing-column .lower-content .buy-btn,
+.error-search-box .form-group input:focus,
+.related-projects .owl-nav .owl-prev:hover,
+.related-projects .owl-nav .owl-next:hover,
+.styled-pagination li a:hover,
+.styled-pagination li a.active,
+.sidebar .popular-tags a:hover,
+.sidebar .search-box .form-group input[type="text"]:focus,
+.sidebar .search-box .form-group input[type="search"]:focus,
+.product-details .basic-details .wishlist:hover,
+.product-details .basic-details .wishlist:hover .icon,
+.blog-single .inner-box .lower-content .text blockquote,
+.comment-form .form-group input[type="text"]:focus,
+.comment-form .form-group input[type="email"]:focus,
+.comment-form .form-group textarea:focus,
+.comment-form button,
+.contact-form .form-group input:focus,
+.contact-form .form-group textarea:focus,
+.faq-search-box .form-group input:focus {
+    border-color: #39b54a;
+}
+
+/*RGBA Color*/
+
+.fun-facts-section .column .inner {
+    background-color: rgba(238, 107, 11, 0.50);
+    background-color: #39b54a8a;
+}
+
+@media only screen and (max-width: 768px) {
+    .main-menu .navbar-header .navbar-toggle {
+        border-color: #39b54a;
+    }
+    .main-menu .navbar-header .navbar-toggle,
+    .main-menu .navbar-collapse>.navigation,
+    .main-menu .navbar-collapse>.navigation>li>ul,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul,
+    .main-menu .navbar-collapse>.navigation>li>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul>li>a,
+    .main-menu .navbar-collapse>.navigation>li>a:hover,
+    .main-menu .navbar-collapse>.navigation>li>a:active,
+    .main-menu .navbar-collapse>.navigation>li>a:focus,
+    .main-menu .navbar-collapse>.navigation>li:hover>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li:hover>a,
+    .main-menu .navbar-collapse>.navigation>li>ul>li>ul>li:hover>a,
+    .main-menu .navbar-collapse>.navigation>li.current>a,
+    .main-menu .navbar-collapse>.navigation>li.current-menu-item>a {
+        background-color: #39b54a;
+    }
+}

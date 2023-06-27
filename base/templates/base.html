@@ -1,0 +1,569 @@
+{% load static %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title> {% block title %}{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/revolution/css/settings.css' %}" rel="stylesheet" type="text/css">
+    <!-- REVOLUTION SETTINGS STYLES -->
+    <link href="{% static 'plugins/revolution/css/layers.css' %}" rel="stylesheet" type="text/css">
+    <!-- REVOLUTION LAYERS STYLES -->
+    <link href="{% static 'plugins/revolution/css/navigation.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <!-- REVOLUTION NAVIGATION STYLES -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+
+    <!--Color Switcher Mockup-->
+    <link href="{% static 'css/color-switcher-design.css' %}" rel="stylesheet">
+
+    <!--Color Themes-->
+    <link id="theme-color-file" href="{% static 'css/color-themes/default-theme.css' %}" rel="stylesheet">
+
+    <!--Favicon-->
+    <!-- Responsive -->
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Main Header-->
+        <header class="main-header header-style-two">
+
+            <!--Header Top-->
+            <div class="header-top">
+                <div class="bg-layer"></div>
+                <div class="auto-container">
+                    <div class="clearfix">
+                        <!--Top Left-->
+                        <div class="top-left">
+                            <ul class="top-links clearfix">
+                                <li><a href="tel:{{main_info.phone}}" target="_blank"><i class="fa-solid fa-phone"></i>
+                                        </span> {{main_info.phone}}</a></li>
+                                <li><a href="mailto:{{main_info.email}}" target="_blank"><span
+                                            class="fa-solid fa-envelope"></span> {{main_info.email}}</a></li>
+                            </ul>
+                        </div>
+                        <!--Top Right-->
+                        <div class="top-right">
+                            <ul class="top-links clearfix">
+                                <li>
+                                    <div class="social-links">
+                                        {% for social_media in social_medias %}
+                                        {% if social_media.app == 'insta' %}
+                                        <a href="" target="_blank"><span
+                                                class="fa fa-instagram"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'fb' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                                class="fa fa-facebook-f"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'tiktok' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                                class="fa fa-tiktok"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'twitter' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                            class="fa fa-twitter"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'linkedin' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                            class="fa fa-linkedin"></span></a>
+                                        {% endif %}
+                                        {% if social_media.app == 'wp' %}
+                                        <a href="{{social_media.link}}" target="_blank"><span
+                                            class="fa fa-whatsapp"></span></a>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% if request.resolver_match.view_name == 'home' %}
+            <h1>here empty</h1>
+            <!--Header-Upper-->
+            {% else %}
+            <div class="header-upper">
+                <div class="auto-container">
+                    <div class="clearfix">
+
+                        <div class="logo-outer">
+                            <div class="logo"><a href="{% url 'home' %}"><img src="{{main_info.header_logo.url}}" alt="" title=""></a>
+                            </div>
+                        </div>
+
+                        <div class="upper-right clearfix">
+
+                            <div class="nav-outer clearfix">
+                                <!-- Main Menu -->
+                                <nav class="main-menu header-style-two">
+                                    <div class="navbar-header">
+                                        <!-- Toggle Button -->
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                            data-target=".navbar-collapse">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                    </div>
+
+                                    <div class="navbar-collapse collapse clearfix">
+                                        <ul class="navigation clearfix">
+                                            <li ><a href="{% url 'home' %}">{% trans 'ANA SƏHİFƏ' %}</a>
+                                                
+                                            </li>
+                                            {% if request.resolver_match.view_name == 'about' %}
+                                            <li class="current"><a href="{% url 'about' %}">{% trans 'HAQQIMIZDA' %}</a>
+                                            {% else %}
+                                            <li ><a href="{% url 'about' %}">{% trans 'HAQQIMIZDA' %}</a>
+                                            {%endif%}
+                                                
+                                            </li>
+                                            {% if request.resolver_match.view_name == 'products' %}
+                                            <li  class="current"><a href="{% url 'products' %}">{% trans 'MƏHSULLAR' %}</a>
+                                            {% else %}
+                                            <li><a href="{% url 'products' %}">{% trans 'MƏHSULLAR' %}</a>
+                                                {% endif %}
+                                            </li>
+                                            
+                                    
+                                            {% if request.resolver_match.view_name == 'blog' %}
+                                            <li class="current"><a href="{% url 'blog' %}">{% trans 'BLOQ' %}</a>
+                                                {% else %}
+                                            <li><a href="{% url 'blog' %}">{% trans 'BLOQ' %}</a>
+                                                
+                                            {% endif %}
+                                            </li>
+                                            
+                                            {% if request.resolver_match.view_name == 'contact' %}
+                                            <li class="current"><a href="{% url 'contact' %}">{% trans 'ƏLAQƏ' %}</a>
+                                            {% else %}
+                                            <li ><a href="{% url 'contact' %}">{% trans 'ƏLAQƏ' %}</a>
+                                            {% endif %}
+                                            </li>
+                                            {% for i in LANGUAGES %}
+                                                {% if LANGUAGE_CODE == i.0 %}
+                                                    <li class="dropdown"><a href="#">{{ i.0|upper }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+                                                <ul class="dropdown-list">
+                                                    {% for i in LANGUAGES %}
+                                                        {% if LANGUAGE_CODE == i.0 %}
+                                                            <li><a href="{% url 'set_lang' i.0 %}">{{ i.0|upper }}</a></li>
+                                                        {% else %}
+                                                            <li><a href="{% url 'set_lang' i.0 %}"> {{ i.0|upper }}</a></li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </ul>
+                                                <div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                </nav>
+                                <!-- Main Menu End-->
+
+                                <!--More Options-->
+                                <div class="more-options clearfix">
+
+                                    <!--Search Box-->
+                                    <div class="dropdown dropdown-outer">
+                                        <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu3"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span
+                                                class="fa fa-search"></span></button>
+                                        <ul class="dropdown-menu pull-right search-panel"
+                                            aria-labelledby="dropdownMenu3">
+                                            <li class="panel-outer">
+                                                <div class="form-container">
+                                                    <form method="get" action="{% url 'products' %}">
+                                                       
+                                                        <div class="form-group">
+                                                            <input type="search" name="field-name" value=""
+                                                                placeholder="Search Here" required="">
+                                                            <button type="submit" class="search-btn"><span
+                                                                    class="fa fa-search"></span></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <!--End Header Upper-->
+
+            <!--Sticky Header-->
+            <div class="sticky-header">
+                <div class="auto-container clearfix">
+                    <!--Logo-->
+                    <div class="logo pull-left">
+                        <a href="{% url 'home' %}" class="img-responsive" title="Tali"><img src="{{main_info.header_logo.url}}"
+                                alt="Tali" title="Tali"></a>
+                    </div>
+
+                    <!--Right Col-->
+                    <div class="right-col pull-right">
+                        <!-- Main Menu -->
+                        <nav class="main-menu">
+                            <div class="navbar-header">
+                                <!-- Toggle Button -->
+                                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                    <li ><a href="{% url 'home' %}">{% trans 'ANA SƏHİFƏ' %}</a>
+                                                
+                                    </li>
+                                    {% if request.resolver_match.view_name == 'about' %}
+                                    <li class="current"><a href="{% url 'about' %}">{% trans 'HAQQIMIZDA' %}</a>
+                                    {% else %}
+                                    <li ><a href="{% url 'about' %}">{% trans 'HAQQIMIZDA' %}</a>
+                                    {%endif%}
+                                        
+                                    </li>
+                                    {% if request.resolver_match.view_name == 'products' %}
+                                    <li  class="current"><a href="{% url 'products' %}">{% trans 'MƏHSULLAR' %}</a>
+                                    {% else %}
+                                    <li><a href="{% url 'products' %}">{% trans 'MƏHSULLAR' %}</a>
+                                        {% endif %}
+                                    </li>
+                                    
+                            
+                                    {% if request.resolver_match.view_name == 'blog' %}
+                                    <li class="current"><a href="{% url 'blog' %}">{% trans 'BLOQ' %}</a>
+                                        {% else %}
+                                    <li><a href="{% url 'blog' %}">{% trans 'BLOQ' %}</a>
+                                        
+                                    {% endif %}
+                                    </li>
+                                    
+                                    {% if request.resolver_match.view_name == 'contact' %}
+                                    <li class="current"><a href="{% url 'contact' %}">{% trans 'ƏLAQƏ' %}</a>
+                                    {% else %}
+                                    <li ><a href="{% url 'contact' %}">{% trans 'ƏLAQƏ' %}</a>
+                                    {% endif %}
+                                    </li>
+                                    
+                                    
+                                   
+                                    
+                                    {% for i in LANGUAGES %}
+                                        {% if LANGUAGE_CODE == i.0 %}
+                                            <li class="dropdown"><a href="sdf">{{ i.0|upper }}</a>
+                                        {% endif %}
+                                    {% endfor %}
+                                        <ul class="dropdown-list">
+                                            
+                                                    {% for i in LANGUAGES %}
+                                                     {% if LANGUAGE_CODE == i.0 %}
+                                                    <li><a href="{% url 'set_lang' i.0 %}">{{ i.0|upper }}</a></li>
+                                                     {% else %}
+                                                    <li><a href="{% url 'set_lang' i.0 %}"> {{ i.0|upper }}</a></li>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                        </ul>
+                                        <div class="dropdown-btn"><span class="fa fa-angle-down"></span></div>
+                                    </li>
+                                   
+                                </ul>
+
+                            </div>
+                        </nav>
+                        <!-- Main Menu End-->
+                    </div>
+
+                </div>
+            </div>
+            <!--End Sticky Header-->
+
+        </header>
+        <!--End Main Header -->
+        {% if request.resolver_match.view_name == 'about' %}
+        <section class="page-title" style="background-image:url('{{images.about.url}}');">
+        {% endif %}
+        {% if request.resolver_match.view_name == 'products' %}
+        <section class="page-title" style="background-image:url('{{images.products.url}}');">
+        {% endif %}
+        {% if request.resolver_match.view_name == 'product_detail' %}
+        <section class="page-title" style="background-image:url('{{images.products.url}}');">
+        {% endif %}
+        {% if request.resolver_match.view_name == 'blog' %}
+        <section class="page-title" style="background-image:url('{{images.blogs.url}}');">
+        {% endif %}
+        {% if request.resolver_match.view_name == 'blog_detail' %}
+        <section class="page-title" style="background-image:url('{{images.blogs.url}}');">
+        {% endif %}
+        {% if request.resolver_match.view_name == 'contact' %}
+        <section class="page-title" style="background-image:url('{{images.contact.url}}');">
+        {% endif %}
+            <div class="auto-container">
+            
+                <!-- Additional content specific to the "about" page -->
+                <div class="inner-box">
+                {% if request.resolver_match.view_name == 'about' %}
+                    <h1>{% trans 'HAQQIMIZDA' %}</h1>
+                    <ul class="bread-crumb">
+                        <li><a href="{% url 'home' %}">{% trans 'Ana Səhifə' %}</a></li>
+                        <li>Haqqımızda</li>
+                    </ul>
+                </div>
+                {% elif request.resolver_match.view_name == 'blog' %}
+                <!-- Additional content specific to the "about" page -->
+                <h1>{% trans 'BLOQ' %}</h1>
+                    <ul class="bread-crumb">
+                        <li><a href="{% url 'home' %}">{% trans 'Ana Səhifə' %}</a></li>
+                        <li>Bloq</li>
+                    </ul>
+                {% elif request.resolver_match.view_name == 'products' %}
+                <!-- Additional content specific to the "about" page -->
+                <h1>{% trans 'MƏHSULLAR' %}</h1>
+                    <ul class="bread-crumb">
+                        <li><a href="{% url 'home' %}">{% trans 'Ana Səhifə' %}</a></li>
+                        <li>{% trans 'Məhsullar' %}</li>
+                    </ul>
+                {% elif request.resolver_match.view_name == 'product_detail' %}
+                    <!-- Additional content specific to the "about" page -->
+                <h1>{% trans 'MƏHSULLAR' %}</h1>
+                  <ul class="bread-crumb">
+                    <li><a href="{% url 'home' %}">{% trans 'Ana Səhifə' %}</a></li>
+                    <li>{% trans 'Məhsullar' %}</li>
+                    </ul>
+                {% elif request.resolver_match.view_name == 'contact' %}
+                    <!-- Additional content specific to the "about" page -->
+                <h1>{% trans 'ƏLAQƏ' %}</h1>
+                  <ul class="bread-crumb">
+                    <li><a href="{% url 'home' %}">{% trans 'Ana Səhifə' %}</a></li>
+                    <li>{% trans 'Əlaqə' %}</li>
+                    </ul>
+                
+            {% endif %}
+
+            
+          
+                
+            </div>
+        </section>
+        {% endif %}
+    {% block content %}
+    {% endblock %}
+    {% if request.resolver_match.view_name == 'about' %}
+        <!--Fun Facts Section -->
+        <section class="fun-facts-section" style="background-image: url('{% static 'images/background/1.jpg' %}');">
+            <div class="auto-container">
+
+                <div class="row clearfix">
+                    <!--Column-->
+                    {% for fact in facts %}
+                    <div class="column count-box col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="inner">
+                            <div class="content">
+                                <div class="count-outer">
+                                    <span class="count-text" data-speed="2000" data-stop="{{fact.count}}">0</span>+
+                                </div>
+                                <div class="counter-title">{{fact.name}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    
+
+                    
+
+                </div>
+
+            </div>
+        </section>
+
+        <!--Sponsors Section-->
+        
+        <section class="sponsors-section">
+            <div class="auto-container">
+                <div class="sec-title">
+                    <h2 class="text-left">PARTNYORLAR</h2>
+                    <div class="separator"></div>
+                </div>
+                <!--Sponsors Carousel-->
+                <ul class="sponsors-carousel owl-carousel owl-theme">
+                    {% for partner in partners %}
+                    <li class="slide-item">
+                        <figure class="image-box"><img src="{{partner.image.url}}" alt=""></figure>
+                    </li>
+                    {% endfor %}
+                    
+                </ul>
+            </div>
+        </section>
+        {% endif %}
+        <!--End Sponsors Section-->
+
+        <!--Main Footer-->
+        <footer class="main-footer">
+
+            <!--Widgets Section-->
+            <div class="widgets-section">
+                <div class="auto-container">
+                    <div class="row">
+
+                        <div class="footer-column col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="footer-widget logo-widget">
+                                <div class="widget-content">
+                                    <div class="footer-logo">
+                                        <a href="{% url 'home' %}"><img src="{{main_info.footer_logo.url}}" alt="" /></a>
+                                    </div>
+                                    <div class="text">{{main_info.footer_text}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Footer Column / Links Widget-->
+                        <div class="footer-column col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="footer-widget links-widget">
+                                <h2>{% trans 'Keçidlər' %}</h2>
+                                <div class="widget-content">
+                                    <ul class="list">
+                                        <li><a href="{% url 'home' %}">{% trans 'Ana Səhifə' %}</a></li>
+                                        <li><a href="{% url 'about' %}">{% trans 'Haqqımızda' %}</a></li>
+                                        <li><a href="{% url 'products' %}">{% trans 'Məhsullar' %}</a></li>
+                                        <li><a href="{% url 'blog' %}">{% trans 'Bloq' %}</a></li>
+                                        <li><a href="{% url 'contact' %}">{% trans 'Əlaqə' %}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Footer Column / Address Widget-->
+                        <div class="footer-column col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="footer-widget address-widget">
+                                <h2>{% trans 'Ünvan' %}</h2>
+                                <div class="widget-content">
+                                    <ul class="contact-info-list">
+                                        <li><strong>{% trans 'Telefon' %}:</strong>{{main_info.phone}}</li>
+                                        <li><strong>{% trans 'Ünvan' %}:</strong> {{main_info.address}}</li>
+                                        <li><strong>{% trans 'Email' %}:</strong> {{main_info.email}}</li>
+                                    </ul>
+                                    <div class="social-links">
+                                        <ul class="clearfix">
+                                            {% for social_media in social_medias %}
+                                            {% if social_media.app == 'fb' %}
+                                            <li><a href="{{social_media.link}}" target="_blank"><span
+                                                        class="fa fa-facebook-f"></span></a></li>
+                                            {% endif %}
+                                            {% if social_media.app == 'wp' %}
+                                            <li> <a href="{{social_media.link}}" target="_blank"><span
+                                                        class="fa fa-whatsapp"></span></a></li>
+                                            {% endif %}
+                                            {% if social_media.app == 'twitter' %}
+                                            <li> <a href="{{social_media.link}}" target="_blank"><span
+                                                        class="fa fa-twitter"></span></a></li>
+                                                        {% endif %}
+                                            {% if social_media.app == 'insta' %}
+                                            <li> <a href="{{social_media.link}}" target="_blank"><span
+                                                        class="fa fa-instagram"></span></a></li>
+                                                        {% endif %}
+                                            {% if social_media.app == 'linkedin' %}
+                                            <li> <a href="{{social_media.link}}" target="_blank"><span
+                                                        class="fa fa-linkedin"></span></a></li>
+                                                        {% endif %}
+                                            {% if social_media.app == 'tiktok' %}
+                                            <li> <a href="{{social_media.link}}" target="_blank"><span
+                                                        class="fa fa-tiktok"></span></a></li>
+                                                        {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--Footer Bottom-->
+                    <div class="footer-bottom">
+                        <div class="auto-container">
+                            <div class="clearfix text-center">
+                                <div class="copyright">&copy; 2023 <a href="https://khanbutagroup.az/">© Khan Buta Group
+                                        MMC</a> All Rights Reserved.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </footer>
+
+
+    </div>
+    <!--End pagewrapper-->
+
+    <!--Scroll to top-->
+    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="icon fa fa-long-arrow-up"></span></div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!--Revolution Slider-->
+    <script src="{% static 'plugins/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.actions.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.carousel.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.kenburn.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.migration.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.navigation.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
+    <script src="{% static 'plugins/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
+    <script src="{% static 'js/main-slider-script.js' %}"></script>
+    <!--End Revolution Slider-->
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+    <script src="{% static 'js/jquery.fancybox-media.js' %}"></script>
+    <script src="{% static 'js/isotope.js' %}"></script>
+    <script src="{% static 'js/owl.js' %}"></script>
+    <script src="{% static 'js/appear.js' %}"></script>
+    <script src="{% static 'js/wow.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <!--Color Switcher-->
+    <script src="{% static 'js/color-settings.js' %}"></script>
+    <script>
+        new WOW().init();
+      </script>
+</body>
+
+</html>

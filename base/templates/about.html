@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+{% block title %} {% trans 'Haqqımızda' %} {% endblock %}
+<section class="about-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <!--Content Column-->
+            <div class="content-column pull-right col-md-6 col-sm-12 col-xs-12 wow fadeInRight">
+                <div class="inner">
+                    <h2>HAQQIMIZDA</h2>
+                    <div class="text">
+                        {{about.text}}
+                    </div>
+                </div>
+            </div>
+            <!--Image Column-->
+            <div class="image-column pull-left col-md-6 col-sm-12 col-xs-12 wow fadeInLeft">
+                <figure class="image-box"><img src="{{about.image.url}}" alt=""></figure>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

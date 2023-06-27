@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Bloq' %} {% endblock %}
+{% block content %}
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!--Blog Grid-->
+            <div class="blog-grid">
+                <div class="row clearfix">
+
+                    
+
+                    
+
+                    
+                    {% for blog in blogs %}
+                    <!--News Style One-->
+                    <div class="news-style-one col-lg-4 col-md-6 col-sm-6 col-xs-12 wow fadeInUp">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="{% url 'blog_detail' blog.slug %}"><img
+                                            src="{{blog.image.url}}" alt=""></a></figure>
+                            </div>
+                            <div class="lower-content">
+                                <h3><a href="{% url 'blog_detail' blog.slug %}">{{blog.title}}</a></h3>
+                                <div class="text"><a href="{% url 'blog_detail' blog.slug %}">{{blog.text|truncatechars:80}}</a></div>
+                                <div class="link-box"><a href="{% url 'blog_detail' blog.slug %}">More Details <span
+                                            class="fa fa-long-arrow-right"></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+
+                    
+
+                </div>
+
+                <!-- Styled Pagination -->
+                {% if blogs|length  > 2 %}
+                <div class="styled-pagination">
+                    <ul class="clearfix">
+                        {% if blogs.has_previous %}
+                            <li><a href="?page=1">&laquo; first</a></li>
+                            
+                        {% endif %}
+                
+                        {% for num in blogs.paginator.page_range %}
+                            {% if blogs.number == num %}
+                                <li><a href="#" class="active">{{ num }}</a></li>
+                            {% else %}
+                                <li><a href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                
+                        {% if blogs.has_next %}
+                            <li><a class="next" href="?page={{ blogs.next_page_number }}">Next</a></li>
+                            
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

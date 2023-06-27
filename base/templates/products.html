@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% trans 'Məhsullar' %}   {% endblock %}
+{% block content %}
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <div class="sidebar-side col-lg-3 col-md-4 col-sm-12 col-xs-12 wow fadeInLeft">
+                <aside class="sidebar">
+
+                    <!-- Search Form -->
+                    <div class="sidebar-widget search-box style-two">
+                        <form method="get" action="{% url 'products' %}">
+                            
+                            <div class="form-group">
+                                <input type="search" name="search-field" value="" placeholder="Search.."
+                                    required="">
+                                <button type="submit"><span class="icon fa fa-search"></span></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!--Blog Category Widget-->
+                    <div class="sidebar-widget sidebar-blog-category">
+                        <div class="sidebar-title">
+                            <h2>Categories</h2>
+                        </div>
+                        <ul class="blog-cat">
+                            {% for category in categories %}
+                            
+                            <li><a href="{% url 'products' %}?category={{category.name}}">{{category.name}} <span>({{category.products.all|length}})</span></a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Price Filters -->
+                    <div class="sidebar-widget price-filters rangeslider-widget">
+                        <div class="sidebar-title">
+                            <h2>Filter By Price</h2>
+                        </div>
+                        <div class="card-body price-card">
+                            <form action="{% url 'products' %}" method="GET">
+                            <input type="number" id="quantity" name="min" min="1" max="10000"
+                                class="price-input minPrice" placeholder="Min" fdprocessedid="mjhs4">
+                            <input type="number" id="quantity" name="max" min="1" max="10000"
+                                class="price-input maxPrice" placeholder="Max" fdprocessedid="ikgq3n">
+                        </div>
+                    </div>
+
+                    
+                    <div class="more-link"> <button type="submit" class="theme-btn btn-style-one">Axtar</button></div>
+                    </form>
+                </aside>
+            </div>
+
+            <!--Content Side-->
+            <div class="content-side col-lg-9 col-md-8 col-sm-12 col-xs-12">
+
+                <!--Our Shop-->
+                <section class="our-shop">
+                    <div class="row clearfix">
+
+                        <!--Shop Item-->
+                        {% for product in products %}
+                        <div class="shop-item col-md-4 col-sm-6 col-xs-12 wow fadeInRight">
+                            <div class="inner-box">
+                                <div class="image">
+                                    <a href="{% url 'product_detail' product.slug %}">
+                                        {% for image in product.images.all %}
+                                        {% if forloop.counter == 1 %}
+                                        <img src="{{image.image.url}}" alt="">
+                                        {% endif %}
+                                        {% endfor %}
+                                    </a>
+                                </div>
+                                <div class="lower-content">
+                                    <h3><a href="{% url 'product_detail' product.slug %}">{{product.name}}</a></h3>
+                                    <div class="clearfix">
+                                        <div class="pull-left">
+                                            <ul class="price">
+                                                {% if product.is_discounted %}
+                                                <li class="total-price">${{product.price}}</li>
+                                                <li>${{product.new_price}}</li>
+                                                {% else %}
+                                                <li>${{product.price}}</li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    
+                    {% if products %}
+                    
+                    <!-- Styled Pagination -->
+                  
+                    
+                    {% endif %}
+                </section>
+                {% include "pagination.html" with page=products %}
+
+            </div>
+
+        </div>
+      
+    </div>
+</div>
+{% endblock %}
